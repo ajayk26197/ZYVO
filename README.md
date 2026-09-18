@@ -73,7 +73,7 @@ cd ..
 npm run dev
 ```
 
-- **Frontend**: [http://localhost:3000](http://localhost:3000)
+
 
 
 ---
@@ -92,8 +92,4 @@ npm run lint --prefix client
 curl http://localhost:5001/api/health
 ```
 
----
 
-## 📄 License
-
-This project is licensed under the MIT License.
