@@ -31,52 +31,6 @@ A modern, responsive, full-stack food delivery web application built with **Reac
 ---
 
 
-## 🚀 Quick Start (Local Development)
-
-### 1. Clone & Install Dependencies
-
-```bash
-git clone https://github.com/<your-username>/zyvo.git
-cd zyvo
-npm run install:all
-```
-
-### 2. Configure Environment Variables
-
-**Backend (`server/.env`):**
-```env
-PORT=5001
-NODE_ENV=development
-MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/biterush?retryWrites=true&w=majority
-JWT_SECRET=your_jwt_secret_key_here
-JWT_EXPIRES_IN=7d
-CLIENT_URL=http://localhost:3000
-```
-
-**Frontend (`client/.env`):**
-```env
-# Optional for local dev (Vite proxy handles /api):
-VITE_API_URL=
-```
-
-### 3. Seed Sample Database (Optional)
-
-```bash
-cd server
-node seeder.js
-cd ..
-```
-
-### 4. Run Development Servers
-
-```bash
-npm run dev
-```
-
-
-
-
----
 
 
 ## 🧪 Quality & Verification Checks
