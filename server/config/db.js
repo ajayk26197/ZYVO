@@ -1,33 +1,33 @@
 import mongoose from 'mongoose';
 
+let cachedConnection = null;
+
 export const connectDB = async () => {
-  const MAX_RETRIES = 5;
-  let retries = 0;
+  if (cachedConnection && mongoose.connection.readyState >= 1) {
+    return cachedConnection;
+  }
 
-  const connect = async () => {
-    try {
-      const conn = await mongoose.connect(process.env.MONGO_URI, {
-        serverSelectionTimeoutMS: 10000,
-      });
-      console.log(`✅ MongoDB connected: ${conn.connection.host}`);
-    } catch (err) {
-      retries++;
-      console.error(`❌ MongoDB connection attempt ${retries}/${MAX_RETRIES} failed: ${err.message}`);
+  if (mongoose.connection.readyState === 1) {
+    cachedConnection = mongoose.connection;
+    return cachedConnection;
+  }
 
-      if (err.message.includes('whitelist') || err.message.includes('Atlas')) {
-        console.error('\n⚠️  FIX: Go to MongoDB Atlas → Network Access → Add your current IP or allow 0.0.0.0/0\n');
-      }
+  if (!process.env.MONGO_URI) {
+    console.error('❌ MONGO_URI is not defined in environment variables.');
+    return;
+  }
 
-      if (retries < MAX_RETRIES) {
-        console.log(`🔄 Retrying in 5 seconds...`);
-        await new Promise(r => setTimeout(r, 5000));
-        return connect();
-      } else {
-        console.error('❌ All connection attempts failed. Server will exit.');
-        process.exit(1);
-      }
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 10000,
+    });
+    cachedConnection = conn;
+    console.log(`✅ MongoDB connected: ${conn.connection.host}`);
+    return conn;
+  } catch (err) {
+    console.error(`❌ MongoDB connection error: ${err.message}`);
+    if (err.message.includes('whitelist') || err.message.includes('Atlas')) {
+      console.error('\n⚠️  FIX: Go to MongoDB Atlas → Network Access → Add your current IP or allow 0.0.0.0/0\n');
     }
-  };
-
-  await connect();
+  }
 };
