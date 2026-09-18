@@ -4,11 +4,14 @@
   "description": "Full-stack food delivery app with React frontend and Node/Express backend",
   "private": true,
   "scripts": {
+    "start": "npm start --prefix server",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
     "dev:client": "npm run dev --prefix client",
     "dev:server": "npm run dev --prefix server",
     "install:all": "npm install && npm install --prefix client && npm install --prefix server",
-    "build": "npm run build --prefix client"
+    "build": "npm run build --prefix client",
+    "lint": "npm run lint --prefix client",
+    "seed": "npm run seed --prefix server"
   },
   "devDependencies": {
     "concurrently": "^9.0.0"
