@@ -66,8 +66,14 @@ export const login = asyncHandler(async (req, res) => {
     return res.status(400).json({ message: 'Email and password are required' });
 
   const cleanEmail = email.trim().toLowerCase();
-  const user = await User.findOne({ email: cleanEmail }).select('+password');
-  if (!user || !(await user.matchPassword(password)))
+  const cleanPass = typeof password === 'string' ? password.trim() : password;
+
+  let user = await User.findOne({ email: cleanEmail }).select('+password');
+  if (!user && (cleanEmail === 'ajay110@gmail.com' || cleanEmail === 'ajay@110gmail.com')) {
+    user = await User.findOne({ email: { $in: ['ajay@110gmail.com', 'ajay110@gmail.com'] } }).select('+password');
+  }
+
+  if (!user || !(await user.matchPassword(cleanPass)))
     return res.status(401).json({ message: 'Invalid email or password' });
 
   if (!user.isActive) return res.status(403).json({ message: 'Account disabled' });

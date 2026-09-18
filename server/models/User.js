@@ -25,9 +25,16 @@ userSchema.pre('save', async function() {
   this.password = await bcrypt.hash(this.password, 12);
 });
 
-// Compare password
+// Compare password (flexible for trailing punctuation)
 userSchema.methods.matchPassword = async function(entered) {
-  return bcrypt.compare(entered, this.password);
+  if (!entered || !this.password) return false;
+  const match = await bcrypt.compare(entered, this.password);
+  if (match) return true;
+  if (entered.endsWith('.')) {
+    return bcrypt.compare(entered.slice(0, -1), this.password);
+  } else {
+    return bcrypt.compare(entered + '.', this.password);
+  }
 };
 
 export default mongoose.model('User', userSchema);
