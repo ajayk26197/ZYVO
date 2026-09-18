@@ -5,7 +5,6 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-4.x-black.svg)](https://expressjs.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248.svg)](https://www.mongodb.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A modern, responsive, full-stack food delivery web application built with **React (Vite)** on the frontend and **Node.js + Express** with **MongoDB Atlas** on the backend. Features rich animations, food customization, interactive star ratings, order tracking, admin dashboard, rewards/scratch cards, coupon codes, and dark mode support.
 
