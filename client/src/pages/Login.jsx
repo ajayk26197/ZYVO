@@ -18,6 +18,7 @@ const Login = () => {
   const switchMode = (m) => {
     setMode(m);
     setError('');
+    setShowPass(false);
     setForm({ email: '', password: '' });
   };
 
@@ -158,7 +159,7 @@ const Login = () => {
                 className="form-input"
                 type="email"
                 name="email"
-                placeholder={isAdmin ? 'ajay@110gmail.com' : 'john@example.com'}
+                placeholder="Enter email address"
                 value={form.email}
                 onChange={handleChange}
                 required
@@ -174,7 +175,7 @@ const Login = () => {
                   className="form-input"
                   type={showPass ? 'text' : 'password'}
                   name="password"
-                  placeholder="••••••••"
+                  placeholder="Enter password"
                   value={form.password}
                   onChange={handleChange}
                   required
