@@ -46,8 +46,9 @@ const DeliveryModel   = mongoose.models.Delivery   || (await import('./models/De
 // 1. USERS (Upsert without clearing existing user accounts)
 // ═══════════════════════════════════════════
 const hashedPass = await bcrypt.hash('password123', 12);
+const adminHashedPass = await bcrypt.hash('ajay@110.', 12);
 const seedUsers = [
-  { name: 'Admin ZYVO', email: 'admin@zyvo.com', password: hashedPass, role: 'admin', phone: '9876543210', avatar: 'https://ui-avatars.com/api/?name=Admin+ZYVO&background=E32929&color=fff' },
+  { name: 'Ajay Kumar', email: 'ajay@110gmail.com', password: adminHashedPass, role: 'admin', phone: '9876543210', avatar: 'https://ui-avatars.com/api/?name=Ajay+Kumar&background=E32929&color=fff' },
   { name: 'Arjun Sharma',   email: 'arjun@example.com', password: hashedPass, role: 'user',  phone: '9123456780', avatar: 'https://ui-avatars.com/api/?name=Arjun+Sharma&background=FF611D&color=fff' },
   { name: 'Priya Patel',    email: 'priya@example.com', password: hashedPass, role: 'user',  phone: '9876501234', avatar: 'https://ui-avatars.com/api/?name=Priya+Patel&background=FFB80E&color=fff' },
 ];
@@ -307,7 +308,7 @@ console.log('   Reviews   : 2');
 console.log('   Payments  : 2');
 console.log('   Deliveries: 2');
 console.log('════════════════════════════════════');
-console.log('\n🔑 Admin login: admin@zyvo.com / password123');
+console.log('\n🔑 Admin login: ajay@110gmail.com / ajay@110.');
 console.log('👤 User login:  arjun@example.com / password123');
 
 await mongoose.disconnect();

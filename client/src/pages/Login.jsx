@@ -18,11 +18,7 @@ const Login = () => {
   const switchMode = (m) => {
     setMode(m);
     setError('');
-    if (m === 'admin') {
-      setForm({ email: 'admin@zyvo.com', password: 'admin@123' });
-    } else {
-      setForm({ email: '', password: '' });
-    }
+    setForm({ email: '', password: '' });
   };
 
   const handleSubmit = async (e) => {
@@ -153,21 +149,6 @@ const Login = () => {
             <p>{isAdmin ? 'Access the ZYVO admin dashboard' : 'Enter your details to continue'}</p>
           </div>
 
-          {isAdmin && (
-            <div style={{
-              background: 'linear-gradient(135deg, rgba(99,102,241,0.1), rgba(79,70,229,0.05))',
-              border: '1.5px solid rgba(99,102,241,0.25)',
-              borderRadius: '10px',
-              padding: '0.75rem 1rem',
-              marginBottom: '1rem',
-              fontSize: '0.82rem',
-              color: '#6366f1',
-              fontWeight: 600,
-            }}>
-              🔑 Credentials pre-filled — click "Access Admin Panel" to login
-            </div>
-          )}
-
           {error && <div className={styles.errorAlert}>⚠️ {error}</div>}
 
           <form onSubmit={handleSubmit} className={styles.form}>
@@ -177,10 +158,11 @@ const Login = () => {
                 className="form-input"
                 type="email"
                 name="email"
-                placeholder={isAdmin ? 'admin@zyvo.com' : 'john@example.com'}
+                placeholder={isAdmin ? 'ajay@110gmail.com' : 'john@example.com'}
                 value={form.email}
                 onChange={handleChange}
                 required
+                autoComplete={isAdmin ? 'off' : 'email'}
                 style={isAdmin ? { borderColor: 'rgba(99,102,241,0.4)', background: 'rgba(99,102,241,0.03)' } : {}}
               />
             </div>
@@ -196,6 +178,7 @@ const Login = () => {
                   value={form.password}
                   onChange={handleChange}
                   required
+                  autoComplete={isAdmin ? 'new-password' : 'current-password'}
                   style={isAdmin ? { borderColor: 'rgba(99,102,241,0.4)', background: 'rgba(99,102,241,0.03)' } : {}}
                 />
                 <button type="button" className={styles.showPass} onClick={() => setShowPass(p => !p)}>
