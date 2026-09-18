@@ -1,0 +1,109 @@
+.footer {
+  background: #171212;
+  color: #E2E8F0;
+  padding: 4rem 0 0;
+  margin-top: 5rem;
+  border-top: 1px solid #262020;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.brand p {
+  font-size: 0.875rem;
+  color: #94A3B8;
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.logoBadge {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  padding: 0.45rem 1rem 0.45rem 0.65rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.logoBadge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255, 82, 0, 0.35);
+}
+
+.socials {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+.socialBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.socialBtn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.col h5 {
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+}
+
+.col ul { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.col ul li a, .col ul li {
+  font-size: 0.875rem;
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-weight: 500;
+}
+
+.col ul li a:hover { color: var(--primary); }
+
+.contactList li { display: flex; align-items: center; gap: 0.4rem; color: #CBD5E1; }
+
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.82rem;
+  color: #64748B;
+}
+
+.bottomLinks { display: flex; gap: 1.5rem; }
+.bottomLinks a { color: #64748B; text-decoration: none; font-weight: 500; }
+.bottomLinks a:hover { color: var(--primary); }
+
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; gap: 2rem; }
+  .bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+}
