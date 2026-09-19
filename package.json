@@ -4,6 +4,7 @@
   "description": "Full-stack food delivery app with React frontend and Node/Express backend",
   "private": true,
   "type": "module",
+  "main": "index.js",
   "scripts": {
     "start": "npm start --prefix server",
     "dev": "concurrently \"npm run dev:client\" \"npm run dev:server\"",
