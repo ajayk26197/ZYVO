@@ -151,10 +151,17 @@ const Navbar = () => {
             <li><NavLink to="/" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? styles.active : ''}>Home</NavLink></li>
             <li><NavLink to="/menu" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? styles.active : ''}>Menu</NavLink></li>
             <li><NavLink to="/orders" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? styles.active : ''}>Orders</NavLink></li>
+            {user && <li className={styles.mobileOnly}><NavLink to="/profile" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? styles.active : ''}>👤 Profile</NavLink></li>}
             {user && <li className={styles.desktopOnly}><NavLink to="/rewards" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? styles.active : ''}>Rewards 🎁</NavLink></li>}
             {isAdmin && <li><NavLink to="/admin" onClick={() => setMenuOpen(false)} className={({ isActive }) => isActive ? styles.active : ''}>Admin</NavLink></li>}
 
-            {!user && (
+            {user ? (
+              <li className={styles.mobileDrawerLogout}>
+                <button className={styles.drawerLogoutBtn} onClick={() => { logout(); setMenuOpen(false); }}>
+                  🚪 Logout
+                </button>
+              </li>
+            ) : (
               <li className={styles.mobileAuthItem}>
                 <div className={styles.mobileAuthBtns}>
                   <Link to="/login" className="btn btn-outline btn-sm" style={{ flex: 1, textAlign: 'center' }} onClick={() => setMenuOpen(false)}>Login</Link>
@@ -166,7 +173,7 @@ const Navbar = () => {
 
           {/* Actions */}
           <div className={styles.actions}>
-            {/* Cart */}
+            {/* Cart (Desktop only, mobile uses MobileBottomNav) */}
             <Link
               to={user ? "/cart" : "/login"}
               className={styles.cartBtn}
@@ -180,10 +187,10 @@ const Navbar = () => {
               {itemCount > 0 && <span className={styles.cartBadge}>{itemCount}</span>}
             </Link>
 
-            {/* User */}
+            {/* Profile / Auth */}
             {user ? (
               <div className={styles.profileWrapper} ref={profileRef}>
-                <button className={styles.avatarBtn} onClick={() => setProfileOpen(p => !p)}>
+                <button className={styles.avatarBtn} onClick={() => setProfileOpen(p => !p)} title="My Profile" aria-label="Open profile menu">
                   <img src={user.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=FC8019&color=fff`}
                     alt={user.name} className={styles.avatar} />
                 </button>
@@ -205,14 +212,20 @@ const Navbar = () => {
                 )}
               </div>
             ) : (
-              <div className={styles.authBtns}>
-                <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
-                <Link to="/signup" className="btn btn-primary btn-sm">Sign Up</Link>
-              </div>
+              <>
+                <div className={styles.authBtns}>
+                  <Link to="/login" className="btn btn-outline btn-sm">Login</Link>
+                  <Link to="/signup" className="btn btn-primary btn-sm">Sign Up</Link>
+                </div>
+                <Link to="/login" className={styles.mobileProfileBtn} title="Login / Profile" aria-label="Login">
+                  <span className={styles.mobileProfileIcon}>👤</span>
+                  <span className={styles.mobileProfileText}>Login</span>
+                </Link>
+              </>
             )}
 
             {/* Hamburger */}
-            <button className={styles.hamburger} ref={hamburgerRef} onClick={() => setMenuOpen(p => !p)}>
+            <button className={styles.hamburger} ref={hamburgerRef} onClick={() => setMenuOpen(p => !p)} aria-label="Toggle Navigation Menu">
               {menuOpen ? '✕' : '☰'}
             </button>
           </div>

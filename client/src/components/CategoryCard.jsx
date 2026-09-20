@@ -5,14 +5,11 @@ import styles from './CategoryCard.module.css';
 const CategoryCard = ({ category }) => {
   const catParam = category.name || category._id;
   return (
-    <Link to={`/menu?category=${encodeURIComponent(catParam.toLowerCase())}`} className={styles.card}>
-      <div className={styles.iconWrapper} style={{ background: category.color || 'var(--surface-2)' }}>
-        <span className={styles.icon}>{category.icon || '🍽️'}</span>
+    <Link to={`/menu?category=${encodeURIComponent(catParam.toLowerCase())}`} className={styles.circleCard} title={`Explore ${category.name}`}>
+      <div className={styles.circleIconWrap} style={{ background: category.color || '#FFFFFF' }}>
+        <span className={styles.circleIcon}>{category.icon || '🍽️'}</span>
       </div>
-      <p className={styles.name}>{category.name}</p>
-      {category.count !== undefined && (
-        <span className={styles.count}>{category.count} items</span>
-      )}
+      <span className={styles.circleName}>{category.name}</span>
     </Link>
   );
 };

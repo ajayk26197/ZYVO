@@ -177,56 +177,34 @@ const Menu = () => {
     <div className={styles.page}>
       <div className="container">
         {/* Top Vibrant #FF5200 Header Banner */}
-        <div style={{
-          background: 'linear-gradient(135deg, #FF5200 0%, #E04800 100%)',
-          borderRadius: '24px',
-          padding: '2.5rem 2rem',
-          marginBottom: '2rem',
-          color: '#ffffff',
-          boxShadow: '0 10px 30px rgba(255, 82, 0, 0.25)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          flexWrap: 'wrap',
-          gap: '1.5rem',
-        }}>
-          <div>
-            <span style={{ background: 'rgba(255,255,255,0.2)', padding: '0.35rem 0.85rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+        <div className={styles.heroBanner}>
+          <div className={styles.heroContent}>
+            <span className={styles.heroBadge}>
               🍽️ ZYVO EXPLORE MENU
             </span>
-            <h1 style={{ color: '#ffffff', margin: '0.5rem 0 0.25rem', fontSize: '2.2rem', fontWeight: 800 }}>
+            <h1 className={styles.heroTitle}>
               Delicious Food Delivered Fast
             </h1>
-            <p style={{ color: 'rgba(255,255,255,0.92)', margin: 0, fontSize: '0.98rem' }}>
+            <p className={styles.heroSubtitle}>
               Showing {displayFoods.length} {displayFoods.length === 1 ? 'dish' : 'dishes'} {search ? `matching "${search}"` : ''}
             </p>
           </div>
 
           {/* Interactive Search Box Form */}
-          <form onSubmit={handleSearchSubmit} style={{
-            background: '#ffffff',
-            borderRadius: '50px',
-            padding: '0.35rem 0.4rem 0.35rem 1.1rem',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            minWidth: '320px',
-            maxWidth: '100%',
-            boxShadow: '0 6px 20px rgba(0,0,0,0.15)',
-          }}>
-            <span style={{ fontSize: '1.1rem' }}>🔍</span>
+          <form onSubmit={handleSearchSubmit} className={styles.heroSearchForm}>
+            <span className={styles.heroSearchIcon}>🔍</span>
             <input
               type="text"
               placeholder="Search dishes or cuisines..."
               value={search}
               onChange={handleSearchChange}
-              style={{ border: 'none', background: 'transparent', outline: 'none', flex: 1, fontSize: '0.92rem', color: '#1F1F1F' }}
+              className={styles.heroSearchInput}
             />
             {search && (
               <button
                 type="button"
                 onClick={handleClearSearch}
-                style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '1rem', color: '#666', padding: '0 0.2rem' }}
+                className={styles.heroClearBtn}
                 title="Clear search"
               >
                 ✕
@@ -234,8 +212,7 @@ const Menu = () => {
             )}
             <button
               type="submit"
-              className="btn btn-primary btn-sm"
-              style={{ borderRadius: '50px', padding: '0.45rem 1.1rem', fontWeight: 700, fontSize: '0.85rem', flexShrink: 0 }}
+              className={`btn btn-primary btn-sm ${styles.heroSearchBtn}`}
             >
               Search 🔍
             </button>

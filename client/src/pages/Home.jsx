@@ -146,12 +146,26 @@ const Home = () => {
           <div className={styles.categoryGrid}>
             {CATEGORIES.map((cat, i) => {
               const catCount = (groupedFoods[cat.name] || ALL_FOODS.filter(f => f.category?.name === cat.name)).length;
+              const isExtraOnMobile = i >= 4;
               return (
-                <div key={cat._id} className={`animate-fadeInUp delay-${(i % 4) + 1}`}>
+                <div
+                  key={cat._id}
+                  className={`animate-fadeInUp delay-${(i % 4) + 1} ${isExtraOnMobile ? styles.desktopOnlyCategory : ''}`}
+                >
                   <CategoryCard category={{ ...cat, count: catCount }} />
                 </div>
               );
             })}
+
+            {/* Mobile "See More" Circular Card (Visible on mobile after 4 circles) */}
+            <div className={`animate-fadeInUp delay-4 ${styles.mobileOnlySeeMore}`}>
+              <Link to="/menu" className={styles.seeMoreCard} title="See More Categories">
+                <div className={styles.seeMoreCircle}>
+                  <span className={styles.seeMoreIcon}>➡️</span>
+                </div>
+                <span className={styles.seeMoreName}>See More</span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
