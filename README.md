@@ -41,7 +41,5 @@ npm run build
 # Run Oxlint on frontend
 npm run lint
 
-# Test API health
-curl http://localhost:5001/api/health
-```
+
 
