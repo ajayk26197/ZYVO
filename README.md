@@ -26,9 +26,7 @@ A modern, responsive, full-stack food delivery web application built with **Reac
   - Customer status toggles
   - Platform settings
 - 📱 **Mobile First & Responsive**: Optimized bottom navigation, touch friendly gestures, and responsive grid layouts.
-- 🔐 **Secure Authentication**: JWT-based session auth with password confirmation & validation.
 
----
 
 
 
